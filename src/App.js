@@ -1,17 +1,20 @@
-import './App.css'
-import { Contactform } from './components/contactForm/contactform.jsx';
-import { ContactHeader } from './components/contactHeader/contact-Header';
-import { Navigation } from './components/Navigation/navigation.jsx'
+import {StartGame} from "./components/startGame";
+import { useState } from "react";
+import { Gameplay } from "./components/GamePlay"
+
 
 const App = () => {
+  const [isGameStarted,setIsGameStarted] = useState(false);
+
+
+  const toggleGamePlay = () => {
+    setIsGameStarted((prev) => !prev)
+  }
+
   return (
-    <div>
-     <Navigation/>
-     <main className='main_container'>
-     <ContactHeader/>
-     <Contactform/>
-     </main>
-    </div>
+    <>
+    {isGameStarted  ? <Gameplay/> : <StartGame toggle={toggleGamePlay}/> }
+    </>
   )
 }
 
